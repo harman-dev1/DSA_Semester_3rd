@@ -1,0 +1,108 @@
+#include<iostream>
+using namespace std;
+
+//Creating Node 
+class Node {
+public:
+int data;
+Node* next;
+Node() {
+this->next=NULL;
+}
+Node(int data) {
+this.data = data;
+this.next = NULL;
+}
+};
+
+//Class to create linked List
+class linked_list {
+Node* head;
+public:
+linked_list() {
+head = NULL;
+}
+void insert_at_last(int);
+void insert_at_head(int);
+void delete_node_from_last();
+void delete_node_from_head();
+void display();
+
+};
+
+//Function for inserting data at tail
+void linked_list::insert_at_last(int data) {
+
+Node* new_node = new Node(data);
+if(head == NULL){
+    head= new_node;   
+    head.next = head;
+}
+Node* temp = head;
+while(temp.next != head) {
+     temp = temp.next;
+}
+temp.next = new_node;
+new_node.next = head;
+}
+
+//Function for inserting at head
+void linked_list::insert_at_head(int data) {
+Node* new_node = new Node(data);
+Node* temp = head;
+
+while(temp.next != head) {
+temp = temp.next;
+}
+temp.next = new_node;
+new_node.next = head;
+head = new_node;
+}
+
+//Delete Node from tail
+void linked_list::delete_node_from_last() {
+Node* temp = head;
+while(temp.next.next != head) {
+     temp = temp.next;
+}
+Node* delete_node = temp.next;
+temp.next = head;
+delete(delete_node);
+}
+
+//delete Node from head
+void linked_list::delete_node_from_head() {
+Node* temp = head;
+Node* d_node = head;
+while(temp.next != head) {
+     temp = temp.next;
+}
+head = head.next;
+temp.next = head;
+delete(d_node);
+}
+
+//Function to display
+void linked_list::display() {
+Node* temp = head;
+do {
+cout << temp.data << " ";
+temp = temp.next;
+} while(temp != head);
+cout << "\n";
+}
+
+main() {
+linked_list l1;
+l1.insert_at_last(8);
+l1.insert_at_last(9);
+l1.insert_at_last(10);
+l1.insert_at_last(11);
+l1.display();
+l1.delete_node_from_last();
+l1.display();
+l1.insert_at_head(100);
+l1.display();
+l1.delete_node_from_head();
+l1.display();
+}
